@@ -37,7 +37,7 @@ public class StringCalculator {
     // Prosty interfejs terminalowy dla demonstracji
     public static void main(String[] args) throws Exception {
         System.out.println("=== TDD demo: StringCalculator ===");
-        System.out.println("Wpisz ciag liczb (np. "1,2,3" lub pusty), Ctrl+D aby zakończyć:");
+        System.out.println("Wpisz ciag liczb (np. \"1,2,3\" lub pusty), Ctrl+D aby zakończyć:");
         java.util.Scanner sc = new java.util.Scanner(System.in);
         StringCalculator calc = new StringCalculator();
         while (sc.hasNextLine()) {
