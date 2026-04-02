@@ -5,6 +5,7 @@ Kompilacja: bash scripts/compile.sh
 Clean Code demo: bash scripts/run_clean_code.sh
 SOLID demo: bash scripts/run_solid.sh
 Testy TDD (String Calculator): bash scripts/test_tdd.sh
+
 Katalog src/ zawiera:
 
 clean: długa metoda do refaktoryzacji (ReportGenerator).
