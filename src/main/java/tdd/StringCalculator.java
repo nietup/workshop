@@ -36,16 +36,17 @@ public class StringCalculator {
     public static void main(String[] args) throws Exception {
         System.out.println("=== TDD demo: StringCalculator ===");
         System.out.println("Wpisz ciag liczb (np. \"1,2,3\" lub pusty), Ctrl+D aby zakończyć:");
-        java.util.Scanner sc = new java.util.Scanner(System.in);
-        StringCalculator calc = new StringCalculator();
-        while (sc.hasNextLine()) {
-            String line = sc.nextLine();
-            try {
-                int result = calc.add(line);
-                System.out.println("Wynik: " + result);
-            } catch (Exception e) {
-                System.out.println("Błąd: " + e.getMessage());
-            }
+        try (java.util.Scanner sc = new java.util.Scanner(System.in)) {
+          StringCalculator calc = new StringCalculator();
+          while (sc.hasNextLine()) {
+              String line = sc.nextLine();
+              try {
+                  int result = calc.add(line);
+                  System.out.println("Wynik: " + result);
+              } catch (Exception e) {
+                  System.out.println("Błąd: " + e.getMessage());
+              }
+          }
         }
     }
 }
