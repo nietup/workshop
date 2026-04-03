@@ -1,85 +1,108 @@
 package clean;
 
-/*
- Cel ćwiczenia:
+import java.util.ArrayList;
+import java.util.List;
 
-Klasa zawiera „długą metodę” do refaktoryzacji (Extract Method, lepsze nazewnictwo, stałe zamiast magicznych liczb,
-guard clauses, opcjonalnie Introduce Parameter Object dla ustawień raportu).
-Utrzymaj zachowanie (uruchom LongMethodApp i testuj ręcznie).
- Wejście: "SALES:100;RETURN:20;SALES:50"
- Parametry: timezone (np. "UTC"), locale (np. "PL" / "EN")
- Wyjście: Tekst raportu z sumami.
-*/
 public class ReportGenerator {
+
+    private static final String TYPE_SALES = "SALES";
+    private static final String TYPE_RETURN = "RETURN";
+
     public String generateReport(String raw, String timezone, String locale) {
         if (raw == null || raw.trim().isEmpty()) {
             return "EMPTY";
         }
-        String[] split = raw.split(";");
-        int salesSum = 0;
-        int returnSum = 0;
-        for (int i = 0; i < split.length; i++) {
-            String entry = split[i];
-            if (entry.contains(":")) {
-                String[] kv = entry.split(":");
-                String key = kv[0].trim();
-                String value = kv[1].trim();
-                int v = 0;
-                try {
-                    v = Integer.parseInt(value);
-                } catch (NumberFormatException e) {
-                    // ignorujemy błędne rekordy
-                    continue;
-                }
-                if (key.equals("SALES")) {
-                    salesSum += v;
-                } else if (key.equals("RETURN")) {
-                    returnSum += v;
-                } else if (key.equals("sale") || key.equals("sprzedaz")) {
-                    // specjalne przypadki
-                    salesSum += v;
-                } else {
-                    // nieznany typ
-                }
-            }
-        }
-        int net = salesSum - returnSum;
-        String tzInfo = "";
-        if (timezone != null) {
-            if (timezone.equals("UTC")) {
-                tzInfo = "[UTC]";
-            } else if (timezone.equals("CET")) {
-                tzInfo = "[CET]";
-            } else {
-                tzInfo = "[TZN]";
-            }
-        } else {
-            tzInfo = "[NA]";
-        }
-        String locInfo = "";
-        if (locale == null) {
-            locInfo = "EN";
-        } else {
-            if (locale.equalsIgnoreCase("PL")) {
-                locInfo = "PL";
-            } else {
-                locInfo = "EN";
-            }
-        }
-        String header;
-        if (locInfo.equals("PL")) {
-            header = "Raport Sprzedaży " + tzInfo;
-        } else {
-            header = "Sales Report " + tzInfo;
-        }
-        String salesLabel = locInfo.equals("PL") ? "Sprzedaż" : "Sales";
-        String returnLabel = locInfo.equals("PL") ? "Zwroty" : "Returns";
-        String netLabel = locInfo.equals("PL") ? "Wynik netto" : "Net";
+        ReportSettings settings = new ReportSettings(timezone, locale);
 
-        String result = header + "\n";
-        result += salesLabel + ": " + salesSum + "\n";
-        result += returnLabel + ": " + returnSum + "\n";
-        result += netLabel + ": " + net;
-        return result;
+        Totals totals = computeTotals(parseEntries(raw));
+        String header = header(settings);
+        Labels labels = labels(settings);
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(header).append("\n")
+          .append(labels.sales).append(": ").append(totals.sales).append("\n")
+          .append(labels.returns).append(": ").append(totals.returns).append("\n")
+          .append(labels.net).append(": ").append(totals.net());
+        return sb.toString();
+    }
+
+    private List<Entry> parseEntries(String raw) {
+        String[] tokens = raw.split(";");
+        List<Entry> entries = new ArrayList<>();
+        for (String token : tokens) {
+            String t = token.trim();
+            if (t.isEmpty() || !t.contains(":")) continue;
+            String[] kv = t.split(":");
+            if (kv.length < 2) continue;
+            String key = kv[0].trim();
+            String val = kv[1].trim();
+            try {
+                int amount = Integer.parseInt(val);
+                entries.add(new Entry(normalizeType(key), amount));
+            } catch (NumberFormatException ignore) {
+                // ignorujemy błędne rekordy
+            }
+        }
+        return entries;
+    }
+
+    private String normalizeType(String key) {
+        String k = key.trim();
+        if (TYPE_SALES.equalsIgnoreCase(k) || "sprzedaz".equalsIgnoreCase(k) || "sale".equalsIgnoreCase(k)) {
+            return TYPE_SALES;
+        }
+        if (TYPE_RETURN.equalsIgnoreCase(k)) {
+            return TYPE_RETURN;
+        }
+        return "UNKNOWN";
+    }
+
+    private Totals computeTotals(List<Entry> entries) {
+        int sales = 0;
+        int returns = 0;
+        for (Entry e : entries) {
+            if (TYPE_SALES.equals(e.type)) sales += e.amount;
+            else if (TYPE_RETURN.equals(e.type)) returns += e.amount;
+        }
+        return new Totals(sales, returns);
+    }
+
+    private String header(ReportSettings settings) {
+        String tz = settings.tzInfoTag();
+        switch (settings.language()) {
+            case PL: return "Raport Sprzedaży " + tz;
+            case EN:
+            default: return "Sales Report " + tz;
+        }
+    }
+
+    private Labels labels(ReportSettings settings) {
+        switch (settings.language()) {
+            case PL: return new Labels("Sprzedaż", "Zwroty", "Wynik netto");
+            case EN:
+            default: return new Labels("Sales", "Returns", "Net");
+        }
+    }
+
+    private static final class Entry {
+        final String type;
+        final int amount;
+        Entry(String type, int amount) { this.type = type; this.amount = amount; }
+    }
+
+    private static final class Totals {
+        final int sales;
+        final int returns;
+        Totals(int sales, int returns) { this.sales = sales; this.returns = returns; }
+        int net() { return sales - returns; }
+    }
+
+    private static final class Labels {
+        final String sales;
+        final String returns;
+        final String net;
+        Labels(String sales, String returns, String net) {
+            this.sales = sales; this.returns = returns; this.net = net;
+        }
     }
 }
