@@ -30,3 +30,4 @@ public class StringCalculatorTests {
         tr.summary();
     }
 }
+
