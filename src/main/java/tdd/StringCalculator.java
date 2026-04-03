@@ -1,41 +1,37 @@
 package tdd;
 
-/*
- String Calculator Kata (TDD)
- Zaimplementuj metodę add(String numbers) krokami TDD. Zasady startowe:
+import java.util.ArrayList;
+import java.util.List;
 
-[x] Pusta wartość -> 0
-[x] Pojedyncza liczba -> sama liczba
-[x] Dwie liczby rozdzielone przecinkiem -> suma
-[x] \n jako separator
-[ ] Wyjątek dla liczb ujemnych z listą liczb ujemnych w komunikacie
-[ ] Ignoruj liczby > 1000
-[ ]  Zacznij od najprostszej implementacji i refaktoryzuj po każdym zielonym teście.
-*/
 public class StringCalculator {
 
     public int add(String numbers) {
-        if (numbers == null || numbers.isEmpty()) return 0;
+        if (numbers == null || numbers.isBlank()) return 0;
 
-        // Prosty, pierwszy krok – obsługa pojedynczej liczby lub dwóch oddzielonych przecinkiem.
-        if (!numbers.contains(",") && !numbers.contains("\n")) {
-            return Integer.parseInt(numbers.trim());
-        }
-        String[] parts = numbers.split("[,\n]");
+        String[] tokens = numbers.split("[,\n]");
+
+        List<Integer> negatives = new ArrayList<>();
         int sum = 0;
-        for (String p : parts) {
-            if (!p.isBlank()) {
-                int v = Integer.parseInt(p.trim());
-                sum += v;
+        for (String t : tokens) {
+            if (t.isBlank()) continue;
+            int v = Integer.parseInt(t.trim());
+            if (v < 0) {
+                negatives.add(v);
+                continue;
             }
+            if (v > 1000) continue;
+            sum += v;
+        }
+        if (!negatives.isEmpty()) {
+            throw new IllegalArgumentException("Negatives not allowed: " + negatives);
         }
         return sum;
     }
 
-    // Prosty interfejs terminalowy dla demonstracji
-    public static void main(String[] args) throws Exception {
+    // Interfejs terminalowy
+    public static void main(String[] args) {
         System.out.println("=== TDD demo: StringCalculator ===");
-        System.out.println("Wpisz ciag liczb (np. \"1,2,3\" lub pusty), Ctrl+D aby zakończyć:");
+        System.out.println("Wpisz ciąg liczb rozdzielonych przecinkiem lub nową linią (np. \"1,2,3\" lub \"1\n2,3\"). Ctrl+D aby zakończyć:");
         try (java.util.Scanner sc = new java.util.Scanner(System.in)) {
           StringCalculator calc = new StringCalculator();
           while (sc.hasNextLine()) {
