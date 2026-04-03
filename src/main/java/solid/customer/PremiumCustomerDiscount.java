@@ -14,7 +14,7 @@ public class PremiumCustomerDiscount implements DiscountPolicy {
     }
 
     @Override
-    public double discount(double base, Order order) {
+    public double discount(double base) {
         return base * 0.10;
     }
 }

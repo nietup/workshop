@@ -13,7 +13,7 @@ public class NoneCouponDiscount implements DiscountPolicy {
     }
 
     @Override
-    public double discount(double base, Order order) {
+    public double discount(double base) {
         return 0.0;
     }
 }

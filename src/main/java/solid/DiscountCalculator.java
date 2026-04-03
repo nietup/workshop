@@ -19,7 +19,7 @@ public class DiscountCalculator {
 
         double totalDiscount = policies.stream()
                 .filter(p -> p.appliesTo(order))
-                .mapToDouble(p -> p.discount(base, order))
+                .mapToDouble(p -> p.discount(base))
                 .sum();
 
         double finalPrice = Math.max(0.0, base - totalDiscount);

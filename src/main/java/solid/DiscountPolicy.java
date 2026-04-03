@@ -2,6 +2,6 @@ package solid;
 
 public interface DiscountPolicy {
     boolean appliesTo(Order order);
-    double discount(double base, Order order);
+    double discount(double base);
 }
 

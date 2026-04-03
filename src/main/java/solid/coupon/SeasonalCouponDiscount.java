@@ -13,7 +13,7 @@ public class SeasonalCouponDiscount implements DiscountPolicy {
     }
 
     @Override
-    public double discount(double base, Order order) {
+    public double discount(double base) {
         return 20.0;
     }
 }
