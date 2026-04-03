@@ -12,7 +12,6 @@ Utrzymaj zachowanie (uruchom LongMethodApp i testuj ręcznie).
 */
 public class ReportGenerator {
     public String generateReport(String raw, String timezone, String locale) {
-        // Długa metoda do ćwiczeń:
         if (raw == null || raw.trim().isEmpty()) {
             return "EMPTY";
         }
