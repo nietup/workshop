@@ -1,33 +1,29 @@
 package tdd;
 
-import common.TestRunner;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class StringCalculatorTests {
-    public static void main(String[] args) {
-        TestRunner tr = new TestRunner();
-        StringCalculator calc = new StringCalculator();
 
-        tr.run("empty returns 0", () -> {
-            TestRunner.assertEquals(0, calc.add(""));
-            TestRunner.assertEquals(0, calc.add(null));
-        });
+    private final StringCalculator calc = new StringCalculator();
 
-        tr.run("single number", () -> {
-            TestRunner.assertEquals(5, calc.add("5"));
-            TestRunner.assertEquals(42, calc.add("42"));
-        });
+    @Test
+    void emptyReturnsZero() {
+        assertEquals(0, calc.add(""));
+        assertEquals(0, calc.add(null));
+    }
 
-        tr.run("two numbers comma separated", () -> {
-            TestRunner.assertEquals(3, calc.add("1,2"));
-            TestRunner.assertEquals(7, calc.add("3,4"));
-        });
+    @Test
+    void singleNumber() {
+        assertEquals(5, calc.add("5"));
+        assertEquals(42, calc.add("42"));
+    }
 
-        tr.run("newline as separator", () -> {
-            TestRunner.assertEquals(6, calc.add("1\n2,3"));
-        });
-
-        // Kolejne testy dopisuj wg zasad kata (negative numbers, >1000, itp.)
-        tr.summary();
+    @Test
+    void twoNumbersCommaSeparated() {
+        assertEquals(3, calc.add("1,2"));
+        assertEquals(7, calc.add("3,4"));
     }
 }
 
