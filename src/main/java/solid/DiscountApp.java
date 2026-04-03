@@ -3,13 +3,6 @@ package solid;
 import java.util.Locale;
 import java.util.Scanner;
 
-/*
- Wejście/wyjście z terminala:
-
-Podaj kwotę, typ klienta (STANDARD/PREMIUM/VIP), kupon (NONE/SEASONAL/LOYALTY)
-
-Program wyświetli finalną cenę po zniżkach.
-*/
 public class DiscountApp {
     public static void main(String[] args) {
         try (Scanner sc = new Scanner(System.in)) {
@@ -30,5 +23,5 @@ public class DiscountApp {
           System.out.println("Błąd: " + e.getMessage());
         }
     }
-
 }
+
