@@ -7,24 +7,31 @@ Wymagania: Java 11+.
 Kompilacja: 
 
 ```
+git switch clean-code-task
 bash scripts/compile.sh
 ```
 
 Clean Code demo: 
 
 ```
+git switch clean-code-task
+bash scripts/compile.sh
 bash scripts/run_clean_code.sh
 ```
 
 SOLID demo: 
 
 ```
+git switch solid-task
+bash scripts/compile.sh
 bash scripts/run_solid.sh
 ```
 
 Testy TDD (String Calculator): 
 
 ```
+git switch tdd-task
+bash scripts/compile.sh
 bash scripts/test_tdd.sh
 ```
 
