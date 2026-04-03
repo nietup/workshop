@@ -4,13 +4,6 @@ Repo do ćwiczeń: Clean Code, SOLID, TDD
 
 Wymagania: Java 11+.
 
-Kompilacja: 
-
-```
-git switch clean-code-task
-bash scripts/compile.sh
-```
-
 Clean Code demo: 
 
 ```
