@@ -2,7 +2,6 @@ package common;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Supplier;
 
 public class TestRunner {
     private final List<String> failures = new ArrayList<>();
@@ -38,3 +37,4 @@ public class TestRunner {
         throw new AssertionError("expected: " + expected + ", actual: " + actual);
     }
 }
+
