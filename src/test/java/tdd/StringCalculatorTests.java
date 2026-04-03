@@ -26,7 +26,7 @@ public class StringCalculatorTests {
             TestRunner.assertEquals(6, calc.add("1\n2,3"));
         });
 
-        // Kolejne testy dopisuj wg zasad kata (custom delimiter, negative numbers, >1000, itp.)
+        // Kolejne testy dopisuj wg zasad kata (negative numbers, >1000, itp.)
         tr.summary();
     }
 }
