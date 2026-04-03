@@ -2,3 +2,7 @@
 out
 sources.txt
 target
+.classpath
+.project
+.settings
+
