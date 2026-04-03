@@ -6,8 +6,6 @@ package solid;
 Obecnie: rozbudowany if-else/switch zależny od typu klienta i kuponu.
 
 Zadanie: Zastąpić rozgałęzienia polimorfizmem (Strategy + Factory), zastosować OCP/DIP.
-
-Dodaj testy ręczne lub użyj prostych asercji przed refaktoryzacją.
 */
 public class DiscountCalculator {
 
