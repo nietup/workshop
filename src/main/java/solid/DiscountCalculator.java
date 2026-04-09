@@ -3,13 +3,12 @@ package solid;
 /*
  Cel ćwiczenia:
 
-Obecnie: rozbudowany if-else/switch zależny od typu klienta i kuponu.
+ Obecnie: rozbudowany if-else/switch zależny od typu klienta i kuponu.
 
-Zadanie: Zastąpić rozgałęzienia polimorfizmem (Strategy + Factory), zastosować OCP/DIP.
+ Zadanie: Zastąpić rozgałęzienia strategią
 */
 public class DiscountCalculator {
 
-    // Zwraca kwotę po zniżce
     public double calculate(Order order) {
         double base = order.getAmount();
         double discount = 0.0;
