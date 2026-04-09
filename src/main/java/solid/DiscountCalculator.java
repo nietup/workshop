@@ -1,12 +1,12 @@
 package solid;
 
+
 import solid.coupon.LoyaltyCouponDiscount;
 import solid.coupon.NoneCouponDiscount;
 import solid.coupon.SeasonalCouponDiscount;
 import solid.customer.PremiumCustomerDiscount;
 import solid.customer.StandardCustomerDiscount;
 import solid.customer.VipCustomerDiscount;
-
 import java.util.Arrays;
 import java.util.List;
 
