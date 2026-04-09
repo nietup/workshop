@@ -23,7 +23,6 @@ public class DiscountCalculator {
         this.policies = Arrays.asList(new LoyaltyCouponDiscount(), new NoneCouponDiscount(), new SeasonalCouponDiscount(), new PremiumCustomerDiscount(), new StandardCustomerDiscount(), new VipCustomerDiscount());
     }
 
-    // Zwraca kwotę po zniżce (sumujemy wszystkie pasujące polityki)
     public double calculate(Order order) {
         double base = order.getAmount();
 
