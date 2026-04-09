@@ -1,5 +1,10 @@
 package solid;
 
+/*
+ Cel ćwiczenia:
+ Obecnie: rozbudowany if-else/switch zależny od typu klienta i kuponu.
+ Zadanie: Zastąpić rozgałęzienia strategią
+*/
 
 import solid.coupon.LoyaltyCouponDiscount;
 import solid.coupon.NoneCouponDiscount;
