@@ -12,7 +12,7 @@ bash scripts/compile.sh
 bash scripts/run_clean_code.sh
 ```
 
-Zadanie demo: 
+Zadanie SOLID: 
 
 ```
 git switch solid-task
