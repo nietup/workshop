@@ -18,4 +18,3 @@ public class PremiumCustomerDiscount implements DiscountPolicy {
         return base * 0.10;
     }
 }
-
