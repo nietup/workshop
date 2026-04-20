@@ -9,7 +9,7 @@ Zadanie Clean Code:
 ```
 git switch clean-code-task
 bash scripts/compile.sh
-bash scripts/run_clean_code.sh
+java -cp out clean.LongMethodApp
 ```
 
 Zadanie SOLID: 
@@ -17,7 +17,7 @@ Zadanie SOLID:
 ```
 git switch solid-task
 bash scripts/compile.sh
-bash scripts/run_solid.sh
+java -cp out solid.DiscountApp
 ```
 
 Zadanie TDD: 
@@ -27,8 +27,8 @@ git switch tdd-task
 bash scripts/compile.sh
 
 # Run tests:
-bash scripts/test_tdd.sh
+mvn clean package
 
 # Run application:
-bash scripts/test_tdd.sh
+java -cp out tdd.StringCalculator
 ```
