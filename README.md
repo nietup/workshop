@@ -4,32 +4,31 @@ Repo do ćwiczeń: Clean Code, SOLID, TDD
 
 Wymagania: Java 11+.
 
-Kompilacja: 
+Zadanie Clean Code: 
 
 ```
+git switch clean-code-task
 bash scripts/compile.sh
-```
-
-Clean Code demo: 
-
-```
 bash scripts/run_clean_code.sh
 ```
 
-SOLID demo: 
+Zadanie SOLID: 
 
 ```
+git switch solid-task
+bash scripts/compile.sh
 bash scripts/run_solid.sh
 ```
 
-Testy TDD (String Calculator): 
+Zadanie TDD: 
 
 ```
+git switch tdd-task
+bash scripts/compile.sh
+
+# Run tests:
+bash scripts/test_tdd.sh
+
+# Run application:
 bash scripts/test_tdd.sh
 ```
-
-Katalog src/ zawiera:
-
-- **clean**: długa metoda do refaktoryzacji (ReportGenerator).
-- **solid**: kalkulator zniżek z if/switch do przerobienia na strategię.
-- **tdd**: StringCalculator z testami opartymi o asercje.
