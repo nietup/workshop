@@ -25,8 +25,10 @@ Zadanie TDD:
 ```
 git switch tdd-task
 bash scripts/compile.sh
+
 # Run tests:
 bash scripts/test_tdd.sh
+
 # Run application:
 bash scripts/test_tdd.sh
 ```
