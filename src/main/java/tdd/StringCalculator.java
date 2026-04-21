@@ -2,15 +2,15 @@ package tdd;
 
 /*
  String Calculator Kata (TDD)
- Zaimplementuj metodę add(String numbers) krokami TDD. Zasady startowe:
+ Zaimplementuj metodę add(String numbers) krokami TDD.
+ Zacznij od najprostszej implementacji i refaktoryzuj po każdym zielonym teście.
 
-[x] Pusta wartość -> 0
-[x] Pojedyncza liczba -> sama liczba
-[x] Dwie liczby rozdzielone przecinkiem -> suma
-[x] \n jako separator
-[ ] Wyjątek dla liczb ujemnych z listą liczb ujemnych w komunikacie
-[ ] Ignoruj liczby > 1000
-[ ]  Zacznij od najprostszej implementacji i refaktoryzuj po każdym zielonym teście.
+ To do:
+ [x] Pusta wartość -> 0
+ [x] Pojedyncza liczba -> sama liczba
+ [x] Dwie liczby rozdzielone przecinkiem -> suma
+ [ ] Wyjątek dla liczb ujemnych z listą liczb ujemnych w komunikacie
+ [ ] Ignoruj liczby > 1000
 */
 public class StringCalculator {
 
@@ -18,10 +18,10 @@ public class StringCalculator {
         if (numbers == null || numbers.isEmpty()) return 0;
 
         // Prosty, pierwszy krok – obsługa pojedynczej liczby lub dwóch oddzielonych przecinkiem.
-        if (!numbers.contains(",") && !numbers.contains("\n")) {
+        if (!numbers.contains(",")) {
             return Integer.parseInt(numbers.trim());
         }
-        String[] parts = numbers.split("[,\n]");
+        String[] parts = numbers.split(",");
         int sum = 0;
         for (String p : parts) {
             if (!p.isBlank()) {
