@@ -3,8 +3,10 @@ package solid.customer;
 import solid.DiscountPolicy;
 import solid.Order;
 import solid.CustomerType;
+import org.springframework.stereotype.Component;
 
 
+@Component
 public class PremiumCustomerDiscount implements DiscountPolicy {
     @Override
     public boolean appliesTo(Order order) {
