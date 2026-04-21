@@ -44,12 +44,8 @@ public class ReportGenerator {
             if (kv.length < 2) continue;
             String key = kv[0].trim();
             String val = kv[1].trim();
-            try {
-                int amount = Integer.parseInt(val);
-                entries.add(new Entry(normalizeType(key), amount));
-            } catch (NumberFormatException ignore) {
-                // ignorujemy błędne rekordy
-            }
+            int amount = Integer.parseInt(val);
+            entries.add(new Entry(normalizeType(key), amount));
         }
         return entries;
     }
