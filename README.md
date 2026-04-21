@@ -1,34 +1,74 @@
 # Warsztaty Clean Code
 
-Repo do ćwiczeń: Clean Code, SOLID, TDD 
+Repo do ćwiczeń: Clean Code, SOLID, TDD
 
-Wymagania: Java 11+.
+## Zadanie Clean Code: 
 
-Zadanie Clean Code: 
+
+Zmień branch:
 
 ```
 git switch clean-code-task
-bash scripts/compile.sh
+```
+
+Kompilacja (z poziomu `wokrshop\`):
+
+```
+scripts\compile.bat
+```
+
+Uruchomienie (z poziomu `wokrshop\`):
+
+```
 java -cp out clean.LongMethodApp
 ```
 
-Zadanie SOLID: 
+---
+
+## Zadanie SOLID:
+
+Zmień branch:
 
 ```
 git switch solid-task
-bash scripts/compile.sh
+```
+
+Kompilacja (z poziomu `wokrshop\`):
+
+```
+scripts\compile.bat
+```
+
+Uruchomienie (z poziomu `wokrshop\`):
+
+```
 java -cp out solid.DiscountApp
 ```
 
-Zadanie TDD: 
+---
+
+## Zadanie TDD: 
+
+Zmień branch:
 
 ```
 git switch tdd-task
-bash scripts/compile.sh
+```
 
-# Run tests:
-mvn clean package
+Kompilacja (z poziomu `wokrshop\`):
 
-# Run application:
+```
+scripts\compile.bat
+```
+
+Uruchomienie (z poziomu `wokrshop\`):
+
+```
 java -cp out tdd.StringCalculator
+```
+
+Uruchomienie testów (z poziomu `wokrshop\`):
+
+```
+mvn clean package
 ```
