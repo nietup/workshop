@@ -4,8 +4,8 @@ package solid;
  Cel ćwiczenia:
  Obecnie: rozbudowany if-else/switch zależny od typu klienta i kuponu.
  Zadanie: Zastąpić rozgałęzienia strategią
- Podpowiedź: stwórz interfejs DiscountPolicy:
 
+ Podpowiedź - stwórz interfejs DiscountPolicy:
  ```
  public interface DiscountPolicy {
     boolean appliesTo(Order order);
