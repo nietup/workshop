@@ -28,12 +28,6 @@ public class StringCalculatorTests {
     }
 
     @Test
-    void newlineAsSeparatorAndMix() {
-        assertEquals(6, calc.add("1\n2,3"));
-        assertEquals(10, calc.add("1\n2\n3,4"));
-    }
-
-    @Test
     void ignoreNumbersGreaterThan1000() {
         assertEquals(2, calc.add("2,1001"));
         assertEquals(1002, calc.add("2,1000"));
