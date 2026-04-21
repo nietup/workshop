@@ -44,8 +44,7 @@ public final class ReportSettings {
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof ReportSettings)) return false;
-        ReportSettings other = (ReportSettings) o;
+        if (!(o instanceof ReportSettings other)) return false;
         return timezone == other.timezone && language == other.language;
     }
 

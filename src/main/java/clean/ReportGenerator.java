@@ -28,12 +28,10 @@ public class ReportGenerator {
         String header = header(settings);
         Labels labels = labels(settings);
 
-        StringBuilder sb = new StringBuilder();
-        sb.append(header).append("\n")
-          .append(labels.sales).append(": ").append(totals.sales).append("\n")
-          .append(labels.returns).append(": ").append(totals.returns).append("\n")
-          .append(labels.net).append(": ").append(totals.net());
-        return sb.toString();
+        return header + "\n" +
+                labels.sales + ": " + totals.sales + "\n" +
+                labels.returns + ": " + totals.returns + "\n" +
+                labels.net + ": " + totals.net();
     }
 
     private List<Entry> parseEntries(String raw) {
@@ -41,7 +39,7 @@ public class ReportGenerator {
         List<Entry> entries = new ArrayList<>();
         for (String token : tokens) {
             String t = token.trim();
-            if (t.isEmpty() || !t.contains(":")) continue;
+            if (!t.contains(":")) continue;
             String[] kv = t.split(":");
             if (kv.length < 2) continue;
             String key = kv[0].trim();
@@ -94,25 +92,15 @@ public class ReportGenerator {
         }
     }
 
-    private static final class Entry {
-        final String type;
-        final int amount;
-        Entry(String type, int amount) { this.type = type; this.amount = amount; }
+    private record Entry(String type, int amount) {
     }
 
-    private static final class Totals {
-        final int sales;
-        final int returns;
-        Totals(int sales, int returns) { this.sales = sales; this.returns = returns; }
-        int net() { return sales - returns; }
-    }
-
-    private static final class Labels {
-        final String sales;
-        final String returns;
-        final String net;
-        Labels(String sales, String returns, String net) {
-            this.sales = sales; this.returns = returns; this.net = net;
+    private record Totals(int sales, int returns) {
+        int net() {
+            return sales - returns;
         }
+    }
+
+    private record Labels(String sales, String returns, String net) {
     }
 }
