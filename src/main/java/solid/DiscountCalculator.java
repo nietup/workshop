@@ -13,38 +13,33 @@ package solid;
  }
  ```
 */
+
+import solid.coupon.LoyaltyCouponDiscount;
+import solid.coupon.NoneCouponDiscount;
+import solid.coupon.SeasonalCouponDiscount;
+import solid.customer.PremiumCustomerDiscount;
+import solid.customer.StandardCustomerDiscount;
+import solid.customer.VipCustomerDiscount;
+import java.util.Arrays;
+import java.util.List;
+
 public class DiscountCalculator {
+
+    private final List<DiscountPolicy> policies;
+
+    public DiscountCalculator() {
+        this.policies = Arrays.asList(new LoyaltyCouponDiscount(), new NoneCouponDiscount(), new SeasonalCouponDiscount(), new PremiumCustomerDiscount(), new StandardCustomerDiscount(), new VipCustomerDiscount());
+    }
 
     public double calculate(Order order) {
         double base = order.getAmount();
-        double discount = 0.0;
 
-        // Zniżki zależne od klienta
-        if (order.getCustomerType() == CustomerType.PREMIUM) {
-            discount += base * 0.10;
-        } else if (order.getCustomerType() == CustomerType.VIP) {
-            discount += base * 0.15;
-        } else {
-            // STANDARD
-        }
+        double totalDiscount = policies.stream()
+                .filter(p -> p.appliesTo(order))
+                .mapToDouble(p -> p.discount(base))
+                .sum();
 
-        // Kupony
-        switch (order.getCouponType()) {
-            case SEASONAL:
-                discount += 20.0;
-                break;
-            case LOYALTY:
-                discount += base >= 200 ? 30.0 : 10.0;
-                break;
-            case NONE:
-            default:
-                break;
-        }
-
-        // Minimalna cena nie może spaść poniżej 0
-        double finalPrice = base - discount;
-        if (finalPrice < 0) finalPrice = 0;
-
+        double finalPrice = Math.max(0.0, base - totalDiscount);
         return round2(finalPrice);
     }
 
