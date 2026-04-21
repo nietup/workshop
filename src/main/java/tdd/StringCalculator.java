@@ -1,5 +1,8 @@
 package tdd;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /*
  String Calculator Kata (TDD)
  Zaimplementuj metodę add(String numbers) krokami TDD.
@@ -15,19 +18,24 @@ package tdd;
 public class StringCalculator {
 
     public int add(String numbers) {
-        if (numbers == null || numbers.isEmpty()) return 0;
+        if (numbers == null || numbers.isBlank()) return 0;
 
-        // Prosty, pierwszy krok – obsługa pojedynczej liczby lub dwóch oddzielonych przecinkiem.
-        if (!numbers.contains(",")) {
-            return Integer.parseInt(numbers.trim());
-        }
         String[] parts = numbers.split(",");
+
+        List<Integer> negatives = new ArrayList<>();
         int sum = 0;
         for (String p : parts) {
-            if (!p.isBlank()) {
-                int v = Integer.parseInt(p.trim());
-                sum += v;
+            if (p.isBlank()) continue;
+            int v = Integer.parseInt(p.trim());
+            if (v < 0) {
+                negatives.add(v);
+                continue;
             }
+            if (v > 1000) continue;
+            sum += v;
+        }
+        if (!negatives.isEmpty()) {
+            throw new IllegalArgumentException("Negatives not allowed: " + negatives);
         }
         return sum;
     }
