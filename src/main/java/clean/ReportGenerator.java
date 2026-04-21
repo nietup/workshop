@@ -6,12 +6,12 @@ import java.util.List;
 /*
  Cel ćwiczenia:
 
-Klasa zawiera długą metodę do refaktoryzacji (Extract Method, lepsze nazewnictwo, stałe zamiast magicznych liczb,
-guard clauses, wydzielenie Parameter Object dla ustawień raportu itp).
-Utrzymaj zachowanie (uruchom LongMethodApp i testuj ręcznie).
- Wejście: "SALES:100;RETURN:20;SALES:50"
- Parametry: timezone (np. "UTC"), locale (np. "PL" / "EN")
- Wyjście: Tekst raportu z sumami.
+ Klasa zawiera długą metodę do refaktoryzacji (Extract Method, lepsze nazewnictwo, stałe zamiast magicznych liczb,
+ guard clauses, wydzielenie Parameter Object dla ustawień raportu itp).
+ Utrzymaj zachowanie (uruchom LongMethodApp i testuj ręcznie).
+  Wejście: "SALES:100;RETURN:20;SALES:50"
+  Parametry: timezone (np. "UTC"), locale (np. "PL" / "EN")
+  Wyjście: Tekst raportu z sumami.
 */
 public class ReportGenerator {
 
