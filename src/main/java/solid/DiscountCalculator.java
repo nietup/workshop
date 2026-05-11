@@ -14,21 +14,16 @@ package solid;
  ```
 */
 
-import solid.coupon.LoyaltyCouponDiscount;
-import solid.coupon.NoneCouponDiscount;
-import solid.coupon.SeasonalCouponDiscount;
-import solid.customer.PremiumCustomerDiscount;
-import solid.customer.StandardCustomerDiscount;
-import solid.customer.VipCustomerDiscount;
-import java.util.Arrays;
+import org.springframework.stereotype.Service;
 import java.util.List;
 
+@Service
 public class DiscountCalculator {
 
     private final List<DiscountPolicy> policies;
 
-    public DiscountCalculator() {
-        this.policies = Arrays.asList(new LoyaltyCouponDiscount(), new NoneCouponDiscount(), new SeasonalCouponDiscount(), new PremiumCustomerDiscount(), new StandardCustomerDiscount(), new VipCustomerDiscount());
+    public DiscountCalculator(List<DiscountPolicy> policies) {
+        this.policies = policies;
     }
 
     public double calculate(Order order) {
